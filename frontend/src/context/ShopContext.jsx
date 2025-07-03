@@ -1,0 +1,37 @@
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { authDataContext } from './authContext'
+import Product from '../pages/Product'
+import axios from 'axios'
+
+export const shopDataContext = createContext()
+function ShopContext({children}) {
+
+    let [products , setProducts] = useState([])
+    let {serverurl} = useContext(authDataContext)
+    let currency = "₹"
+    let delivery_fee = 50;
+
+    const getProducts = async () =>{
+        try{
+            let result = await axios.get(serverurl +"/api/product/list")
+            console.log(result.data)
+            setProducts(result.data)
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=>{
+        getProducts()
+    },[])
+    let value = {
+        products, currency , delivery_fee ,getProducts
+    }
+  return (
+  <shopDataContext.Provider value={value}>
+    {children}
+  </shopDataContext.Provider>
+)
+}
+
+export default ShopContext

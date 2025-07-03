@@ -30,10 +30,6 @@ function Usercontex({ children }) {
   },[])
 
 
-
-
-
-
   let value = {
     userData,setUserData,getCurrentUser
 

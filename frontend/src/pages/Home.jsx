@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Background from '../component/Background.jsx'
 import Hero from '../component/Hero.jsx'
+import Product from './Product.jsx'
 
 function Home() {
   let heroData = [
@@ -40,6 +41,7 @@ function Home() {
         <Background HeroCount={HeroCount} />
       </div>
     </div>
+    <Product/>
     </div>
   )
 }

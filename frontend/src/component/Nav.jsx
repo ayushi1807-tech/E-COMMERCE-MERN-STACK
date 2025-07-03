@@ -45,16 +45,16 @@ function Nav() {
 
         <div className="w-[50%] lg:w-[40%] hidden md:flex">
           <ul className="flex items-center justify-center gap-[19px] text-[white]">
-            <li className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl">
+            <li className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl" onClick={()=>navigate("/")}>
               Home
             </li>
-            <li className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl">
+            <li className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl" onClick={()=>navigate("/collection")}>
               Collections
             </li>
-            <li className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl">
+            <li className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl"onClick={()=>navigate("/about")}>
               About
             </li>
-            <li className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl">
+            <li className="text-[15px] hover:bg-slate-500 cursor-pointer bg-[#000000c9] py-[10px] px-[20px] rounded-2xl" onClick={()=>navigate("/contact")}>
               Contact
             </li>
           </ul>
@@ -107,7 +107,7 @@ function Nav() {
           >
             <input
               type="text"
-              className="w-[50%] h-[60%] bg-[#233533] 
+              className="lg:w-[50%] w-[80%] h-[60%] bg-[#233533] 
           rounded-[30px] px-[50px] placeholder:text-white text-[white] text-[18px]"
               placeholder="Search here"
             />
@@ -153,7 +153,12 @@ function Nav() {
               >
                 Orders
               </li>
-              <li className="w-[100%] hover:bg-[#2f2f2f] px-[15px] py-[10px] cursor-pointer">
+              <li className="w-[100%] hover:bg-[#2f2f2f] px-[15px] py-[10px] cursor-pointer"
+              onClick={() => {
+                   ()=>navigate("/about")
+                    setShowProfile(false);
+                  }}
+              >
                 About
               </li>
             </ul>
@@ -167,7 +172,7 @@ function Nav() {
           <button
             className="text-[white] flex items-center
             justify-center flex-col gap-[2px]
-            "
+            "onClick={()=>navigate("/")}
           >
             <IoMdHome className="w-[30px] h-[30px] text-[white] md:hidden" />
             Home
@@ -175,17 +180,17 @@ function Nav() {
           <button
             className="text-[white] flex items-center
             justify-center flex-col gap-[2px]
-            "
+            "onClick={()=>navigate("/collection")}
           >
-            <BsCollectionFill className="w-[30px] h-[30px] text-[white] md:hidden" />
+            <BsCollectionFill className="w-[30px] h-[30px] text-[white] md:hidden" onClick={()=>("/collection")}/>
             Collections
           </button>
           <button
             className="text-[white] flex items-center
             justify-center flex-col gap-[2px]
-            "
+            "onClick={()=>navigate("/contact")}
           >
-            <MdContacts className="w-[30px] h-[30px] text-[white] md:hidden" />
+            <MdContacts className="w-[30px] h-[30px] text-[white] md:hidden" onClick={()=>("/about")}/>
             Contact
           </button>
           <button
@@ -196,6 +201,10 @@ function Nav() {
             <FaShoppingCart className="w-[30px] h-[30px] text-[white] md:hidden" />
             Cart
           </button>
+          <p className="absolute w-[18px] flex 
+          items-center justify-center bg-white 
+          px-[5px] py-[2px] text-black font-semibold rounded-full
+           text-[9px] top-[8px] right-[18px]">10</p>
           
         </div>
       </div>
