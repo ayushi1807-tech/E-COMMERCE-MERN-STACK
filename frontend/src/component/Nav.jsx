@@ -11,11 +11,12 @@ import { MdContacts } from "react-icons/md";
 import { IoMdHome } from "react-icons/io";
 import { userDataContext } from "../context/Usercontex";
 import { authDataContext } from "../context/authContext";
+import { shopDataContext } from "../context/ShopContext";
 
 function Nav() {
   let { getCurrentUser, userData } = useContext(userDataContext);
   let { serverurl } = useContext(authDataContext);
-  let [showSearch, setShowSearch] = useState(false);
+  let {showSearch, setShowSearch,search,setSearch,getCartCount}= useContext(shopDataContext)
   let [showProfile, setShowProfile] = useState(false);
   let navigate = useNavigate();
 
@@ -64,7 +65,7 @@ function Nav() {
           {!showSearch && (
             <IoSearchCircle
               className="w-[38px] h-[38px] text-[#00000] cursor-pointer"
-              onClick={() => setShowSearch((prev) => !prev)}
+              onClick={() => {setShowSearch((prev) => !prev);navigate("/collection")}}
             />
           )}
           {showSearch && (
@@ -87,16 +88,18 @@ function Nav() {
         rounded-full flex items-center justify-center cursor-pointer"
               onClick={() => setShowProfile((prev) => !prev)}
             >
-              {userData?.name.slice(0, 1)}
+              {userData?.name ? userData.name.slice(0, 1) : null}
             </div>
           )}
-          <FaShoppingCart className="w-[32px] h-[38px] text-[#00000] cursor-pointer hidden md:block" />
+          <FaShoppingCart className="w-[32px] h-[38px] text-[#00000] cursor-pointer hidden md:block" onClick={()=>navigate('/cart')} />
           <p
             className="absolute w-[18px] h-[18px] bg-black items-center justify-center
         px-[5px] py-[2px] text-white rounded-full 
         text-[9px] top-[10px] right-[23px] hidden md:block"
           >
-            10
+           {
+            getCartCount()
+           }
           </p>
         </div>
 
@@ -109,7 +112,7 @@ function Nav() {
               type="text"
               className="lg:w-[50%] w-[80%] h-[60%] bg-[#233533] 
           rounded-[30px] px-[50px] placeholder:text-white text-[white] text-[18px]"
-              placeholder="Search here"
+              placeholder="Search here" onChange={(e) =>{setSearch(e.target.value)}} value={search}
             />
           </div>
         )}
@@ -196,7 +199,7 @@ function Nav() {
           <button
             className="text-[white] flex items-center
             justify-center flex-col gap-[2px]
-            "
+            " onClick={()=>navigate('/cart')}
           >
             <FaShoppingCart className="w-[30px] h-[30px] text-[white] md:hidden" />
             Cart
@@ -204,7 +207,7 @@ function Nav() {
           <p className="absolute w-[18px] flex 
           items-center justify-center bg-white 
           px-[5px] py-[2px] text-black font-semibold rounded-full
-           text-[9px] top-[8px] right-[18px]">10</p>
+           text-[9px] top-[8px] right-[18px]">{getCartCount()}</p>
           
         </div>
       </div>
