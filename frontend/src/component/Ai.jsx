@@ -112,9 +112,9 @@ function Ai() {
                 }
             } else if (
                 transcript.includes("thank you") ||
-                transcript.includes("love you")
+                
             ) {
-                speak("love you 2 visit again");
+                speak("visit again");
             } else {
                 toast.error("Try Again");
             }
